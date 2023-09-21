@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('churches', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('abreviation')->nullable();
+            $table->string('email')->unique()->nullable();
+            $table->string('phone')->unique()->nullable();
+            $table->string('logo_url')->nullable();
             $table->timestamps();
         });
     }
