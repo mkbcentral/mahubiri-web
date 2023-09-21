@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('preacher_name');
-            $table->string('preaching_url');
+            $table->string('preaching_url')->nullable();
             $table->foreignIdFor(Church::class);
             $table->timestamps();
         });

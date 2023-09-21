@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Church;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PreachingResource;
 use App\Models\Preaching;
 use App\Repositories\Church\CrudPreachingRepository;
 use Illuminate\Http\Request;
@@ -27,6 +28,7 @@ class CrudPreachingController extends Controller
             if ($request->audio != null) {
                 $inputs['preaching_url'] = $this->saveAudio($request->audio);
             }
+            $inputs['church_id']=1;
             CrudPreachingRepository::create($inputs);
             return response()->json([
                 'message' => 'Prédication bien créée',
@@ -48,7 +50,7 @@ class CrudPreachingController extends Controller
         try {
             $preaching = CrudPreachingRepository::show($id);
             return response()->json([
-                'preaching' => $preaching,
+                'preaching' => new PreachingResource($preaching),
                 'status' => true
             ], 200);
         } catch (\Exception $ex) {
@@ -106,7 +108,6 @@ class CrudPreachingController extends Controller
         return $request->validate([
             'title' => ['required', 'string'],
             'preacher_name' => ['nullable', 'string'],
-            'preaching_url' => ['required', 'numeric'],
         ]);
     }
 }

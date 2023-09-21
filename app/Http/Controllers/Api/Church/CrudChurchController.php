@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Church;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ChurchResource;
 use App\Models\Church;
 use App\Repositories\Church\CrudChurchRepository;
 use Illuminate\Http\Request;
@@ -23,7 +24,7 @@ class CrudChurchController extends Controller
     public function store(Request $request)
     {
         try {
-            $inputs = $this->validateForm($request);
+            $inputs = $this->validateForm($request,false);
             //Check if image input is not empty and create url for this one
             if ($request->image != null) {
                 $inputs['logo_url']=$this->savaImage($request->image);
@@ -49,7 +50,7 @@ class CrudChurchController extends Controller
         try {
             $church = CrudChurchRepository::show($id);
             return response()->json([
-                'church' => $church,
+                'church' => new ChurchResource($church),
                 'status' => true
             ], 200);
         } catch (\Exception $ex) {
@@ -66,7 +67,7 @@ class CrudChurchController extends Controller
     public function update(Request $request, Church $church)
     {
         try {
-            $inputs = $this->validateForm($request);
+            $inputs = $this->validateForm($request,true);
             //Check if image input is not empty and create url for this one
             if ($request->image != null) {
                 $inputs['logo_url']=$this->savaImage($request->image);
@@ -112,13 +113,23 @@ class CrudChurchController extends Controller
         }
     }
 
-    private function validateForm(Request $request):array{
-        return $request->validate([
-            'name' => ['required', 'string'],
-            'abreviation' => ['nullable', 'string'],
-            'email' => ['nullable', 'string', 'unique:churches,email'],
-            'phone' => ['nullable', 'string', 'unique:churches,phone'],
-
-        ]);
+    private function validateForm(Request $request,bool $isEditing):array{
+        if ($isEditing==false) {
+            return $request->validate([
+                'name' => ['required', 'string'],
+                'abreviation' => ['nullable', 'string'],
+                'email' => ['nullable', 'string', 'unique:churches,email'],
+                'phone' => ['nullable', 'string', 'unique:churches,phone'],
+    
+            ]);
+        } else {
+            return $request->validate([
+                'name' => ['required', 'string'],
+                'abreviation' => ['nullable', 'string'],
+                'email' => ['nullable', 'string'],
+                'phone' => ['nullable', 'string'],
+            ]);
+        }
+       
     }
 }

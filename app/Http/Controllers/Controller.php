@@ -18,8 +18,7 @@ class Controller extends BaseController
     public function savaImage($image,string $path='public'):string{
         $filename=time().'png';
         Storage::disk($path)->put($filename,base64_decode($image));
-        $url=URL::to('/').'/storage/'.$path.'/'.$filename;
-        return $url;
+        return '/storage/'.$path.'/'.$filename;
     }
     /**
      *Save Audio with Api functionalty
@@ -27,7 +26,6 @@ class Controller extends BaseController
     public function saveAudio($image,string $path='public'):string{
         $filename=time().'png';
         Storage::disk($path)->put($filename,base64_decode($image));
-        $url=URL::to('/').'/storage/'.$path.'/'.$filename;
-        return $url;
+        return '/storage/'.$path.'/'.$filename;
     }
 }
