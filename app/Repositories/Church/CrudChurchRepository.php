@@ -1,6 +1,6 @@
 <?php 
 
-namespace App\Repositories;
+namespace App\Repositories\Church;
 
 use App\Models\Church;
 

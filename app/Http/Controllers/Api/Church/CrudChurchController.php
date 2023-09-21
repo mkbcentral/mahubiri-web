@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\Church;
 
 use App\Http\Controllers\Controller;
 use App\Models\Church;
-use App\Repositories\CrudChurchRepository;
+use App\Repositories\Church\CrudChurchRepository;
 use Illuminate\Http\Request;
 
 class CrudChurchController extends Controller
