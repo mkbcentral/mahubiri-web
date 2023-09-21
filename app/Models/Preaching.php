@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Preaching extends Model
 {
     use HasFactory;
+    protected $fillable=['title','preacher_name','preaching_url','church_id'];
+    
 }
