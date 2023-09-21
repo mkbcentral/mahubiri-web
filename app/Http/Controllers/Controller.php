@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\URL;
 class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
-
     /**
      *Save image with Api functionalty
      */
