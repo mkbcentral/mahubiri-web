@@ -15,7 +15,8 @@ class CrudPreachingRepository{
          $preaching->update($inputs);
          return $preaching;
     }
-    public static function delete(Preaching $preaching):bool{
+    public static function delete(string $id):bool{
+        $preaching=Preaching::find($id);
         if ($preaching->delete()) {
            return true;
         }
