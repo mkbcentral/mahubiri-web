@@ -11,7 +11,7 @@ class CrudPreachingRepository{
     public static function show(string $id):Preaching{
         return Preaching::find($id);
     }
-    public static function uupdate(Preaching $preaching,array $inputs):Preaching{
+    public static function update(Preaching $preaching,array $inputs):Preaching{
          $preaching->update($inputs);
          return $preaching;
     }

@@ -11,7 +11,7 @@ class CrudChurchRepository{
     public static function show(string $id):Church{
         return Church::find($id);
     }
-    public static function uupdate(Church $church,array $inputs):Church{
+    public static function update(Church $church,array $inputs):Church{
          $church->update($inputs);
          return $church;
     }
