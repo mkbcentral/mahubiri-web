@@ -15,7 +15,9 @@ class CrudPreachingController extends Controller
      */
     public function index()
     {
-        //
+        $preachings=Preaching::where('name','like','%'.request('query').'%')
+            ->orderBy('created_at','DESC')->paginate(10);
+        return PreachingResource::collection($preachings);
     }
 
     /**
@@ -41,7 +43,6 @@ class CrudPreachingController extends Controller
             ], 200);
         }
     }
-
     /**
      * Display the specified resource.
      */

@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Church>
@@ -17,7 +18,11 @@ class ChurchFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name'=>fake()->name(),
+            'abreviation'=>Str::random(5),
+            'email'=>fake()->email(),
+            'phone'=>fake()->phoneNumber(),
+            'logo_url'=>fake()->url(),
         ];
     }
 }

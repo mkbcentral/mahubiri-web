@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Church;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,10 @@ class PreachingFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'title'=>fake()->name(),
+            'preacher_name'=>fake()->email(),
+            'preaching_url'=>fake()->url(),
+            'church_id'=>Church::all()->random()->id
         ];
     }
 }
