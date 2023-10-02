@@ -15,9 +15,7 @@ class CrudPreachingController extends Controller
      */
     public function index()
     {
-        $preachings=Preaching::where('name','like','%'.request('query').'%')
-            ->orderBy('created_at','DESC')->paginate(10);
-        return PreachingResource::collection($preachings);
+        return CrudPreachingRepository::getListPreaching();
     }
 
     /**
@@ -35,12 +33,12 @@ class CrudPreachingController extends Controller
             return response()->json([
                 'message' => 'Prédication bien créée',
                 'status' => true
-            ], 200);
+            ]);
         } catch (\Exception $ex) {
             return response()->json([
                 'error' => $ex->getMessage(),
                 'status' => false
-            ], 200);
+            ]);
         }
     }
     /**
@@ -53,12 +51,12 @@ class CrudPreachingController extends Controller
             return response()->json([
                 'preaching' => new PreachingResource($preaching),
                 'status' => true
-            ], 200);
+            ]);
         } catch (\Exception $ex) {
             return response()->json([
                 'error' => $ex->getMessage(),
                 'status' => false
-            ], 200);
+            ]);
         }
     }
 
@@ -76,12 +74,12 @@ class CrudPreachingController extends Controller
             return response()->json([
                 'message' => 'Prédication bien modifée',
                 'status' => true
-            ], 200);
+            ]);
         } catch (\Exception $ex) {
             return response()->json([
                 'error' => $ex->getMessage(),
                 'status' => false
-            ], 200);
+            ]);
         }
     }
 
@@ -95,12 +93,12 @@ class CrudPreachingController extends Controller
             return response()->json([
                 'message' => 'Prédication bien retirée',
                 'status' => $status
-            ], 200);
+            ]);
         } catch (\Exception $ex) {
             return response()->json([
                 'error' => $ex->getMessage(),
                 'status' => false
-            ], 200);
+            ]);
         }
     }
 
