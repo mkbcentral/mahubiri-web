@@ -19,6 +19,7 @@ class ChurchResource extends JsonResource
             'abreviation'=>$this->abreviation,
             'email'=>$this->email,
             'phone'=>$this->phone,
+            //'logo_url'=>$this->logo_url==null ? null :config('app.url').''.$this->logo_url,
             'logo_url'=>$this->logo_url,
         ];
     }

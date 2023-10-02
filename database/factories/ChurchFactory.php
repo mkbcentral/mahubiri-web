@@ -22,7 +22,7 @@ class ChurchFactory extends Factory
             'abreviation'=>Str::random(5),
             'email'=>fake()->email(),
             'phone'=>fake()->phoneNumber(),
-            'logo_url'=>fake()->url(),
+            'logo_url'=>fake()->imageUrl(640, 480),
         ];
     }
 }

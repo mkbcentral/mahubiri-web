@@ -15,8 +15,8 @@ class CrudChurchController extends Controller
      */
     public function index()
     {
-        $churches=Church::where('name','like','%'.request('query').'%')
-            ->orderBy('created_at','DESC')->paginate(10);
+        $churches=Church::where('name','like','%'.request('q').'%')
+            ->orderBy('created_at','DESC')->paginate(request('per_page'));
         return ChurchResource::collection($churches);
     }
 
